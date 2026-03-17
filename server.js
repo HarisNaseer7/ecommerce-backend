@@ -11,6 +11,10 @@ const { errorHandler } = require("./middleware/errorMiddleware");
 const app = express();
 app.use(cors());
 
+app.use(cors({
+  origin: 'https://ecommerce-frontend-sepia-seven.vercel.app'
+}))
+
 app.use(express.json());
 
 // MongoDB connection
@@ -25,7 +29,7 @@ app.use("/api/orders", require("./routes/order"));
 app.use("/api/upload", require("./routes/uploadRoutes"));
 
 // Make uploads folder public
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
 
 app.use(errorHandler);
 
